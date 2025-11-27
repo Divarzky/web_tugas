@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tugas Dipzkyy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Selamat Datang! 👋</h2>
+            <p>Masukkan nama Anda untuk melanjutkan</p>
+            <form id="loginForm">
+                <div class="login-input-container">
+                    <input type="text" id="username" class="login-input" placeholder=" " required>
+                    <label for="username" class="login-input-label">Nama Pengguna</label>
+                </div>
+                <button type="submit" class="login-btn">Masuk ke Sistem</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const usernameInput = document.getElementById('username');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = usernameInput.value.trim();
+
+            if (username) {
+                // Simpan nama pengguna di LocalStorage
+                localStorage.setItem('username', username);
+                
+                // Animasi sebelum redirect
+                const loginCard = document.querySelector('.login-card');
+                loginCard.style.animation = 'cardExit 0.5s ease forwards';
+                
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

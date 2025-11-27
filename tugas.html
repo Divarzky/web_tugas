@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Pemrograman Dasar C++</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Tugas Pemrograman Dasar C++</h1>
+        <a href="home.html" class="btn-secondary">← Kembali ke Home</a>
+    </header>
+
+    <main class="container task-list">
+        
+        <section class="code-block-section animated-card">
+            <div class="task-header">
+                <h2>PEMBAHASAN 1 – Menampilkan daftar jajanan & stok</h2>
+                <div class="code-actions">
+                    <button class="action-btn copy-btn" data-target="code1">Copy</button>
+                    <button class="action-btn download-btn" data-target="code1" data-filename="tugas1_stok.txt">Download TXT</button>
+                </div>
+            </div>
+            <pre class="code-area" id="code1">
+#include &lt;iostream&gt;
+using namespace std;
+
+// PEMBAHASAN 1: Menampilkan daftar jajanan & stok
+void tampilkanMenu(string nama[], int harga[], int stok[], int jumlah) {
+    cout &lt;&lt; "\n=== DAFTAR JAJANAN ===" &lt;&lt; endl;
+    for (int i = 0; i &lt; jumlah; i++) {
+        cout &lt;&lt; i+1 &lt;&lt; ". " &lt;&lt; nama[i] 
+             &lt;&lt; " | Harga: " &lt;&lt; harga[i] 
+             &lt;&lt; " | Stok: " &lt;&lt; stok[i] &lt;&lt; endl;
+    }
+}
+
+int main() {
+    string nama[3] = {"Mie Goreng", "Es Teh", "Sosis Bakar"};
+    int harga[3] = {8000, 3000, 5000};
+    int stok[3] = {10, 15, 12};
+
+    tampilkanMenu(nama, harga, stok, 3);
+
+    return 0;
+}
+            </pre>
+        </section>
+
+        <hr>
+
+        <section class="code-block-section animated-card">
+            <div class="task-header">
+                <h2>PEMBAHASAN 2 – Pengurangan stok otomatis saat pembelian</h2>
+                <div class="code-actions">
+                    <button class="action-btn copy-btn" data-target="code2">Copy</button>
+                    <button class="action-btn download-btn" data-target="code2" data-filename="tugas2_kurangi_stok.txt">Download TXT</button>
+                </div>
+            </div>
+            <pre class="code-area" id="code2">
+#include &lt;iostream&gt;
+using namespace std;
+
+// PEMBAHASAN 2: Pengurangan stok otomatis
+void beliBarang(int index, int jumlah, int stok[]) {
+    if (jumlah &lt;= stok[index]) {
+        stok[index] -= jumlah;
+        cout &lt;&lt; "Pembelian berhasil! Stok sekarang: " &lt;&lt; stok[index] &lt;&lt; endl;
+    } else {
+        cout &lt;&lt; "Gagal! Stok tidak cukup." &lt;&lt; endl;
+    }
+}
+
+int main() {
+    int stok[3] = {10, 15, 12};
+
+    beliBarang(0, 3, stok); // contoh beli 3 item dari barang ke-1
+    beliBarang(1, 20, stok); // stok tidak cukup
+
+    return 0;
+}
+            </pre>
+        </section>
+
+        <hr>
+
+        <section class="code-block-section animated-card">
+            <div class="task-header">
+                <h2>PEMBAHASAN 3 – Fitur Restock Barang</h2>
+                <div class="code-actions">
+                    <button class="action-btn copy-btn" data-target="code3">Copy</button>
+                    <button class="action-btn download-btn" data-target="code3" data-filename="tugas3_restock.txt">Download TXT</button>
+                </div>
+            </div>
+            <pre class="code-area" id="code3">
+#include &lt;iostream&gt;
+using namespace std;
+
+// PEMBAHASAN 3: Fitur restock barang
+void restock(int index, int jumlah, int stok[]) {
+    stok[index] += jumlah;
+    cout &lt;&lt; "Restock berhasil! Stok baru: " &lt;&lt; stok[index] &lt;&lt; endl;
+}
+
+int main() {
+    int stok[3] = {10, 15, 12};
+
+    restock(0, 5, stok); // tambah stok item 1 sebanyak 5
+
+    return 0;
+}
+            </pre>
+        </section>
+
+        <hr>
+
+        <section class="code-block-section animated-card">
+            <div class="task-header">
+                <h2>PEMBAHASAN 4 – Menu pilihan menggunakan if/else</h2>
+                <div class="code-actions">
+                    <button class="action-btn copy-btn" data-target="code4">Copy</button>
+                    <button class="action-btn download-btn" data-target="code4" data-filename="tugas4_ifelse.txt">Download TXT</button>
+                </div>
+            </div>
+            <pre class="code-area" id="code4">
+#include &lt;iostream&gt;
+using namespace std;
+
+// PEMBAHASAN 4: Menu pilihan menggunakan if/else
+void menu() {
+    cout &lt;&lt; "\n=== MENU UTAMA ===" &lt;&lt; endl;
+    cout &lt;&lt; "1. Lihat menu" &lt;&lt; endl;
+    cout &lt;&lt; "2. Beli barang" &lt;&lt; endl;
+    cout &lt;&lt; "3. Restock" &lt;&lt; endl;
+    cout &lt;&lt; "4. Keluar" &lt;&lt; endl;
+}
+
+int main() {
+    int pilihan;
+    menu();
+    cout &lt;&lt; "Pilih: ";
+    cin &gt;&gt; pilihan;
+
+    if (pilihan == 1) cout &lt;&lt; "Kamu memilih: Lihat menu" &lt;&lt; endl;
+    else if (pilihan == 2) cout &lt;&lt; "Kamu memilih: Beli barang" &lt;&lt; endl;
+    else if (pilihan == 3) cout &lt;&lt; "Kamu memilih: Restock" &lt;&lt; endl;
+    else if (pilihan == 4) cout &lt;&lt; "Keluar program" &lt;&lt; endl;
+
+    return 0;
+}
+            </pre>
+        </section>
+
+        <hr>
+
+        <section class="code-block-section animated-card">
+            <div class="task-header">
+                <h2>PEMBAHASAN 4 – Menu pilihan menggunakan switch</h2>
+                <div class="code-actions">
+                    <button class="action-btn copy-btn" data-target="code5">Copy</button>
+                    <button class="action-btn download-btn" data-target="code5" data-filename="tugas5_switch.txt">Download TXT</button>
+                </div>
+            </div>
+            <pre class="code-area" id="code5">
+#include &lt;iostream&gt;
+using namespace std;
+
+// PEMBAHASAN 4: Menu pilihan menggunakan switch
+void menu() {
+    cout &lt;&lt; "\n=== MENU UTAMA ===" &lt;&lt; endl;
+    cout &lt;&lt; "1. Lihat menu" &lt;&lt; endl;
+    cout &lt;&lt; "2. Beli barang" &lt;&lt; endl;
+    cout &lt;&lt; "3. Restock" &lt;&lt; endl;
+    cout &lt;&lt; "4. Keluar" &lt;&lt; endl;
+}
+
+int main() {
+    int pilihan;
+    menu();
+
+    cout &lt;&lt; "Pilih: ";
+    cin &gt;&gt; pilihan;
+
+    switch(pilihan) {
+        case 1: cout &lt;&lt; "Lihat menu" &lt;&lt; endl; break;
+        case 2: cout &lt;&lt; "Beli barang" &lt;&lt; endl; break;
+        case 3: cout &lt;&lt; "Restock" &lt;&lt; endl; break;
+        case 4: cout &lt;&lt; "Keluar" &lt;&lt; endl; break;
+        default: cout &lt;&lt; "Pilihan tidak ada!" &lt;&lt; endl; break;
+    }
+
+    return 0;
+}
+            </pre>
+        </section>
+
+        <hr>
+
+        <section class="code-block-section animated-card">
+            <div class="task-header">
+                <h2>PEMBAHASAN 5 – Program berjalan terus menggunakan while/do-while</h2>
+                <div class="code-actions">
+                    <button class="action-btn copy-btn" data-target="code6">Copy</button>
+                    <button class="action-btn download-btn" data-target="code6" data-filename="tugas6_dowhile.txt">Download TXT</button>
+                </div>
+            </div>
+            <pre class="code-area" id="code6">
+#include &lt;iostream&gt;
+using namespace std;
+
+// PEMBAHASAN 5: Looping program dengan do-while
+int main() {
+    int pilihan;
+
+    do {
+        cout &lt;&lt; "\n=== MENU UTAMA ===" &lt;&lt; endl;
+        cout &lt;&lt; "1. Lihat menu" &lt;&lt; endl;
+        cout &lt;&lt; "2. Beli barang" &lt;&lt; endl;
+        cout &lt;&lt; "3. Restock" &lt;&lt; endl;
+        cout &lt;&lt; "4. Keluar" &lt;&lt; endl;
+
+        cout &lt;&lt; "Masukkan pilihan: ";
+        cin &gt;&gt; pilihan;
+
+        cout &lt;&lt; "Kamu memilih menu: " &lt;&lt; pilihan &lt;&lt; endl;
+
+    } while (pilihan != 4);
+
+    cout &lt;&lt; "Program selesai." &lt;&lt; endl;
+
+    return 0;
+}
+            </pre>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Tugas Pemrograman C++</p>
+    </footer>
+
+    <script>
+        // Animasi untuk kartu saat dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.animated-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
+                card.classList.add('animate-in');
+            });
+        });
+
+        // --- Fungsionalitas Copy dan Download (JavaScript) ---
+
+        // Fungsi untuk membersihkan kode (hapus spasi/baris kosong di awal/akhir)
+        function cleanCode(code) {
+            return code.trim();
+        }
+
+        // Fungsionalitas Copy
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const codeElement = document.getElementById(targetId);
+                const codeText = cleanCode(codeElement.textContent);
+                
+                // Menggunakan Clipboard API untuk menyalin teks
+                navigator.clipboard.writeText(codeText).then(() => {
+                    // Animasi tombol copy
+                    this.classList.add('copied');
+                    this.textContent = 'Copied!';
+                    
+                    setTimeout(() => {
+                        this.classList.remove('copied');
+                        this.textContent = 'Copy';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                    alert('Gagal menyalin teks.');
+                });
+            });
+        });
+
+        // Fungsionalitas Download TXT
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const filename = this.getAttribute('data-filename');
+                const codeElement = document.getElementById(targetId);
+                const codeText = cleanCode(codeElement.textContent);
+
+                // Animasi tombol download
+                this.classList.add('downloading');
+                
+                setTimeout(() => {
+                    // Buat Blob dari teks
+                    const blob = new Blob([codeText], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+
+                    // Buat elemen <a> sementara untuk men-download
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url); // Bersihkan URL objek
+                    
+                    this.classList.remove('downloading');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
