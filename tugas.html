@@ -14,6 +14,7 @@
             --card-bg: #2e2454;
             --code-bg: #1c1c2b;
             --accent-color: #ff2e63;
+            --explanation-bg: #2a2a3a;
             --gradient-1: linear-gradient(135deg, #00d9f5, #ff2e63);
             --gradient-2: linear-gradient(135deg, #2e2454, #3b3060);
             --gradient-3: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -232,6 +233,7 @@
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
             line-height: 1.5;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 15px;
         }
         
         .code-area::-webkit-scrollbar {
@@ -246,6 +248,80 @@
         .code-area::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 4px;
+        }
+        
+        .explanation-section {
+            margin-top: 15px;
+        }
+        
+        .explanation-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(59, 48, 96, 0.8);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--radius-sm);
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .explanation-btn:hover {
+            background: rgba(85, 74, 134, 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .explanation-content {
+            background: var(--explanation-bg);
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--accent-color);
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .explanation-content.show {
+            display: block;
+        }
+        
+        .explanation-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .explanation-points {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .explanation-point {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .point-number {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        
+        .point-text {
+            flex: 1;
         }
         
         .btn, .action-btn, .menu-btn {
@@ -365,7 +441,7 @@
         @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(10px);
             }
             100% {
                 opacity: 1;
@@ -574,7 +650,7 @@
     <main class="container task-list">
         <section class="task-intro animated-card card-3d">
             <h2>Kumpulan Tugas Pemrograman C++</h2>
-            <p>Berikut adalah kumpulan kode program C++ untuk tugas pemrograman dasar. Anda dapat menyalin kode atau mengunduhnya dalam format teks.</p>
+            <p>Berikut adalah kumpulan kode program C++ untuk tugas pemrograman dasar. Anda dapat menyalin kode, mengunduhnya, atau melihat penjelasan lengkap untuk setiap kode.</p>
         </section>
         
         <section class="code-block-section animated-card card-3d">
@@ -613,6 +689,54 @@ int main() {
 
     return 0;
 }</pre>
+            
+            <div class="explanation-section">
+                <button class="explanation-btn pulse-animation" data-target="explanation1">
+                    <span class="btn-icon">📝</span>
+                    Klik untuk Penjelasan Kode
+                </button>
+                <div id="explanation1" class="explanation-content">
+                    <h3>Penjelasan Kode Program Menampilkan Daftar Jajanan</h3>
+                    <div class="explanation-points">
+                        <div class="explanation-point">
+                            <div class="point-number">1</div>
+                            <div class="point-text">
+                                <strong>#include &lt;iostream&gt;</strong> - Ini adalah preprocessor directive untuk menyertakan library input/output standar C++ yang memungkinkan kita menggunakan fungsi seperti cout dan cin.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">2</div>
+                            <div class="point-text">
+                                <strong>using namespace std;</strong> - Memungkinkan kita menggunakan fungsi-fungsi dari standard library tanpa harus menulis std:: sebelum setiap fungsi.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">3</div>
+                            <div class="point-text">
+                                <strong>Fungsi tampilkanMenu</strong> - Fungsi ini menerima 3 array (nama, harga, stok) dan sebuah integer (jumlah). Fungsi ini bertugas menampilkan daftar menu jajanan ke layar.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">4</div>
+                            <div class="point-text">
+                                <strong>Loop for</strong> - Digunakan untuk mengiterasi melalui setiap elemen dalam array. Variabel i dimulai dari 0 dan berjalan sampai i &lt; jumlah.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">5</div>
+                            <div class="point-text">
+                                <strong>Array</strong> - Program menggunakan 3 array: nama (string), harga (integer), dan stok (integer) untuk menyimpan data jajanan.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">6</div>
+                            <div class="point-text">
+                                <strong>Fungsi main</strong> - Titik awal eksekusi program. Di sini kita mendeklarasikan array dan memanggil fungsi tampilkanMenu.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <hr>
@@ -652,6 +776,48 @@ int main() {
 
     return 0;
 }</pre>
+            
+            <div class="explanation-section">
+                <button class="explanation-btn pulse-animation" data-target="explanation2">
+                    <span class="btn-icon">📝</span>
+                    Klik untuk Penjelasan Kode
+                </button>
+                <div id="explanation2" class="explanation-content">
+                    <h3>Penjelasan Kode Program Pengurangan Stok Otomatis</h3>
+                    <div class="explanation-points">
+                        <div class="explanation-point">
+                            <div class="point-number">1</div>
+                            <div class="point-text">
+                                <strong>Fungsi beliBarang</strong> - Fungsi ini menerima 3 parameter: index (posisi barang dalam array), jumlah (banyaknya barang yang dibeli), dan stok (array yang menyimpan stok barang).
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">2</div>
+                            <div class="point-text">
+                                <strong>Percabangan if-else</strong> - Program memeriksa apakah jumlah yang ingin dibeli tidak melebihi stok yang tersedia. Jika ya, maka stok dikurangi; jika tidak, tampilkan pesan error.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">3</div>
+                            <div class="point-text">
+                                <strong>Operator -=</strong> - Operator ini digunakan untuk mengurangi nilai variabel. stok[index] -= jumlah sama dengan stok[index] = stok[index] - jumlah.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">4</div>
+                            <div class="point-text">
+                                <strong>Array sebagai parameter</strong> - Dalam C++, ketika kita melewatkan array ke fungsi, kita sebenarnya melewatkan pointer ke elemen pertama array. Perubahan pada array dalam fungsi akan mempengaruhi array asli.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">5</div>
+                            <div class="point-text">
+                                <strong>Pemanggilan fungsi</strong> - Dalam main, kita memanggil fungsi beliBarang dua kali: pertama dengan parameter yang valid (stok cukup), kedua dengan parameter yang tidak valid (stok tidak cukup).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <hr>
@@ -686,6 +852,48 @@ int main() {
 
     return 0;
 }</pre>
+            
+            <div class="explanation-section">
+                <button class="explanation-btn pulse-animation" data-target="explanation3">
+                    <span class="btn-icon">📝</span>
+                    Klik untuk Penjelasan Kode
+                </button>
+                <div id="explanation3" class="explanation-content">
+                    <h3>Penjelasan Kode Program Fitur Restock Barang</h3>
+                    <div class="explanation-points">
+                        <div class="explanation-point">
+                            <div class="point-number">1</div>
+                            <div class="point-text">
+                                <strong>Fungsi restock</strong> - Fungsi ini sederhana dan bertugas menambah stok barang. Parameter yang diterima sama dengan fungsi beliBarang: index, jumlah, dan array stok.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">2</div>
+                            <div class="point-text">
+                                <strong>Operator +=</strong> - Operator ini digunakan untuk menambah nilai variabel. stok[index] += jumlah sama dengan stok[index] = stok[index] + jumlah.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">3</div>
+                            <div class="point-text">
+                                <strong>Tidak ada validasi</strong> - Berbeda dengan fungsi beliBarang, fungsi restock tidak memerlukan validasi karena menambah stok selalu diperbolehkan (tidak ada batasan maksimal).
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">4</div>
+                            <div class="point-text">
+                                <strong>Pemanggilan fungsi</strong> - Dalam main, kita hanya memanggil fungsi restock sekali dengan parameter (0, 5, stok) yang berarti menambah 5 unit ke barang dengan index 0.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">5</div>
+                            <div class="point-text">
+                                <strong>Feedback kepada pengguna</strong> - Fungsi memberikan feedback dengan menampilkan pesan "Restock berhasil!" beserta stok baru, sehingga pengguna tahu operasi berhasil dilakukan.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <hr>
@@ -729,6 +937,54 @@ int main() {
 
     return 0;
 }</pre>
+            
+            <div class="explanation-section">
+                <button class="explanation-btn pulse-animation" data-target="explanation4">
+                    <span class="btn-icon">📝</span>
+                    Klik untuk Penjelasan Kode
+                </button>
+                <div id="explanation4" class="explanation-content">
+                    <h3>Penjelasan Kode Program Menu Pilihan Menggunakan If/Else</h3>
+                    <div class="explanation-points">
+                        <div class="explanation-point">
+                            <div class="point-number">1</div>
+                            <div class="point-text">
+                                <strong>Fungsi menu</strong> - Fungsi ini hanya bertugas menampilkan pilihan menu ke layar. Ini membuat kode lebih terorganisir dan mudah dibaca.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">2</div>
+                            <div class="point-text">
+                                <strong>Input pengguna</strong> - Program menggunakan cin &gt;&gt; pilihan untuk menerima input dari pengguna. Input ini disimpan dalam variabel pilihan bertipe integer.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">3</div>
+                            <div class="point-text">
+                                <strong>Struktur if-else if</strong> - Program menggunakan serangkaian if-else if untuk memeriksa nilai pilihan dan mengeksekusi perintah yang sesuai.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">4</div>
+                            <div class="point-text">
+                                <strong>Operator ==</strong> - Operator perbandingan yang digunakan untuk memeriksa kesamaan antara nilai pilihan dengan angka 1, 2, 3, atau 4.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">5</div>
+                            <div class="point-text">
+                                <strong>Keterbatasan</strong> - Program ini hanya menampilkan pesan sesuai pilihan, tidak benar-benar menjalankan fungsi yang sesuai. Dalam implementasi nyata, kita akan memanggil fungsi yang sesuai di setiap cabang if.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">6</div>
+                            <div class="point-text">
+                                <strong>Tidak ada penanganan error</strong> - Jika pengguna memasukkan angka selain 1-4, program tidak memberikan feedback. Dalam implementasi lengkap, kita perlu menambahkan else untuk menangani input tidak valid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <hr>
@@ -776,6 +1032,54 @@ int main() {
 
     return 0;
 }</pre>
+            
+            <div class="explanation-section">
+                <button class="explanation-btn pulse-animation" data-target="explanation5">
+                    <span class="btn-icon">📝</span>
+                    Klik untuk Penjelasan Kode
+                </button>
+                <div id="explanation5" class="explanation-content">
+                    <h3>Penjelasan Kode Program Menu Pilihan Menggunakan Switch</h3>
+                    <div class="explanation-points">
+                        <div class="explanation-point">
+                            <div class="point-number">1</div>
+                            <div class="point-text">
+                                <strong>Struktur switch-case</strong> - Alternatif dari if-else if yang lebih efisien ketika kita memiliki banyak kondisi yang harus diperiksa terhadap satu variabel.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">2</div>
+                            <div class="point-text">
+                                <strong>Keyword switch</strong> - Diikuti oleh variabel yang akan diperiksa (dalam hal ini pilihan). Program akan melompat ke case yang sesuai dengan nilai variabel.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">3</div>
+                            <div class="point-text">
+                                <strong>Keyword case</strong> - Menentukan nilai yang akan dibandingkan dengan variabel switch. Jika cocok, kode setelah case akan dieksekusi.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">4</div>
+                            <div class="point-text">
+                                <strong>Keyword break</strong> - Sangat penting dalam switch! Break menghentikan eksekusi kode dalam switch dan keluar dari blok switch. Tanpa break, eksekusi akan "jatuh" ke case berikutnya.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">5</div>
+                            <div class="point-text">
+                                <strong>Keyword default</strong> - Blok default dieksekusi ketika tidak ada case yang cocok dengan nilai variabel. Ini mirip dengan else dalam struktur if-else.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">6</div>
+                            <div class="point-text">
+                                <strong>Keunggulan switch</strong> - Lebih mudah dibaca dan ditulis ketika ada banyak kondisi. Juga lebih efisien secara performa untuk banyak kondisi dibandingkan if-else if.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <hr>
@@ -819,11 +1123,59 @@ int main() {
 
     return 0;
 }</pre>
+            
+            <div class="explanation-section">
+                <button class="explanation-btn pulse-animation" data-target="explanation6">
+                    <span class="btn-icon">📝</span>
+                    Klik untuk Penjelasan Kode
+                </button>
+                <div id="explanation6" class="explanation-content">
+                    <h3>Penjelasan Kode Program Looping dengan Do-While</h3>
+                    <div class="explanation-points">
+                        <div class="explanation-point">
+                            <div class="point-number">1</div>
+                            <div class="point-text">
+                                <strong>Loop do-while</strong> - Jenis loop yang mengeksekusi blok kode terlebih dahulu, kemudian memeriksa kondisi. Berbeda dengan while yang memeriksa kondisi dulu sebelum eksekusi.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">2</div>
+                            <div class="point-text">
+                                <strong>Struktur do-while</strong> - Dimulai dengan keyword do, diikuti blok kode dalam kurung kurawal, dan diakhiri dengan while(kondisi). Pastikan ada titik koma setelah while(kondisi).
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">3</div>
+                            <div class="point-text">
+                                <strong>Kondisi keluar</strong> - Loop akan terus berjalan selama pilihan != 4 (pilihan tidak sama dengan 4). Ketika pengguna memasukkan 4, kondisi menjadi false dan loop berhenti.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">4</div>
+                            <div class="point-text">
+                                <strong>Keunggulan do-while</strong> - Cocok untuk situasi dimana kita ingin mengeksekusi blok kode setidaknya sekali, terlepas dari kondisi. Dalam kasus menu, kita selalu ingin menampilkan menu setidaknya sekali.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">5</div>
+                            <div class="point-text">
+                                <strong>Program interaktif</strong> - Dengan loop ini, program menjadi interaktif dan dapat menerima multiple input dari pengguna sampai mereka memilih untuk keluar.
+                            </div>
+                        </div>
+                        <div class="explanation-point">
+                            <div class="point-number">6</div>
+                            <div class="point-text">
+                                <strong>Pesan akhir</strong> - Setelah keluar dari loop, program menampilkan "Program selesai." untuk memberi tahu pengguna bahwa program telah berakhir dengan baik.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer class="footer card-3d">
-        <p>&copy; 2024 Tugas Pemrograman C++ | Dipzkyy</p>
+        <p>&copy; 2025 Tugas Pemrograman C++ | Dipzkyy</p>
     </footer>
 
     <script>
@@ -921,6 +1273,34 @@ int main() {
                             this.innerHTML = originalText;
                         }, 2000);
                     }, 800);
+                });
+            });
+            
+            // Explanation functionality
+            document.querySelectorAll('.explanation-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const explanationContent = document.getElementById(targetId);
+                    
+                    // Toggle explanation content
+                    if (explanationContent.classList.contains('show')) {
+                        explanationContent.classList.remove('show');
+                        this.innerHTML = '<span class="btn-icon">📝</span> Klik untuk Penjelasan Kode';
+                    } else {
+                        // Close all other explanations
+                        document.querySelectorAll('.explanation-content').forEach(content => {
+                            content.classList.remove('show');
+                        });
+                        
+                        // Reset all buttons
+                        document.querySelectorAll('.explanation-btn').forEach(btn => {
+                            btn.innerHTML = '<span class="btn-icon">📝</span> Klik untuk Penjelasan Kode';
+                        });
+                        
+                        // Show this explanation
+                        explanationContent.classList.add('show');
+                        this.innerHTML = '<span class="btn-icon">🔽</span> Tutup Penjelasan';
+                    }
                 });
             });
             
