@@ -4,7 +4,344 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tugas Pemrograman Dasar C++</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === VARIABLES === */
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #ffffff;
+            --primary-color: #00d9f5;
+            --secondary-color: #3b3060;
+            --card-bg: #2e2454;
+            --code-bg: #1c1c2b;
+            --border-color: #554a86;
+            --accent-color: #ff2e63;
+            --gradient-1: linear-gradient(135deg, #00d9f5, #ff2e63);
+            --gradient-2: linear-gradient(135deg, #2e2454, #3b3060);
+            --shadow-3d: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-3d-hover: 0 8px 20px rgba(0, 0, 0, 0.6);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        /* === BASE STYLES === */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 14px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* === CONTAINER & LAYOUT === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
+            flex-grow: 1;
+        }
+
+        /* === HEADER & FOOTER === */
+        .header {
+            background-color: var(--secondary-color);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .footer {
+            background-color: var(--secondary-color);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 12px 0;
+            margin-top: 24px;
+            font-size: 0.8rem;
+        }
+
+        /* === BUTTONS & LINKS === */
+        .btn, .action-btn, .menu-btn {
+            padding: 10px 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4px 0;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            min-height: 40px;
+        }
+
+        .primary-btn {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 3px 8px rgba(0, 217, 245, 0.3);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px) translateZ(8px);
+            box-shadow: 0 6px 15px rgba(0, 217, 245, 0.5);
+        }
+
+        .secondary-btn, .btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .secondary-btn:hover, .btn-secondary:hover {
+            background-color: #40346d;
+            transform: translateY(-2px) translateZ(5px);
+            box-shadow: 0 4px 12px rgba(0, 217, 245, 0.3);
+        }
+
+        .action-btn {
+            font-size: 0.85rem;
+            padding: 6px 10px;
+            margin-left: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn.copied {
+            background-color: #4CAF50;
+            transform: scale(0.95);
+        }
+
+        .action-btn.downloading {
+            background-color: #FF9800;
+            transform: scale(0.95);
+        }
+
+        /* === CARDS/SECTIONS === */
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-3px) translateZ(8px);
+            box-shadow: var(--shadow-3d-hover);
+        }
+
+        .animated-card {
+            opacity: 0;
+            transform: translateY(15px) rotateX(5deg);
+            transition: all 0.4s ease;
+        }
+
+        .animated-card.animate-in {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        /* === TUGAS PAGE STYLES === */
+        .task-list {
+            padding: 16px;
+        }
+
+        .code-block-section {
+            background-color: var(--card-bg);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+            border-left: 4px solid var(--primary-color);
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+        }
+
+        .code-block-section:hover {
+            transform: translateY(-2px) translateZ(5px);
+            box-shadow: var(--shadow-3d-hover);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .task-header h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .code-area {
+            background-color: var(--code-bg);
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monospace', monospace;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+            transform: translateZ(5px);
+            position: relative;
+            line-height: 1.4;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-color), transparent);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (min-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 14px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .task-header {
+                flex-wrap: nowrap;
+                align-items: center;
+            }
+            
+            .task-header h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            html {
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 24px;
+            }
+            
+            .header {
+                padding: 16px 24px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .task-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .code-area {
+                font-size: 0.95rem;
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0;
+            }
+            
+            .task-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .task-header h2 {
+                font-size: 1.1rem;
+            }
+            
+            .code-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .action-btn {
+                flex: 1;
+                margin: 0;
+            }
+            
+            .btn, .action-btn, .menu-btn {
+                padding: 8px 12px;
+                min-height: 36px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -22,8 +359,7 @@
                     <button class="action-btn download-btn" data-target="code1" data-filename="tugas1_stok.txt">Download TXT</button>
                 </div>
             </div>
-            <pre class="code-area" id="code1">
-#include &lt;iostream&gt;
+            <pre class="code-area" id="code1">#include &lt;iostream&gt;
 using namespace std;
 
 // PEMBAHASAN 1: Menampilkan daftar jajanan & stok
@@ -44,8 +380,7 @@ int main() {
     tampilkanMenu(nama, harga, stok, 3);
 
     return 0;
-}
-            </pre>
+}</pre>
         </section>
 
         <hr>
@@ -58,8 +393,7 @@ int main() {
                     <button class="action-btn download-btn" data-target="code2" data-filename="tugas2_kurangi_stok.txt">Download TXT</button>
                 </div>
             </div>
-            <pre class="code-area" id="code2">
-#include &lt;iostream&gt;
+            <pre class="code-area" id="code2">#include &lt;iostream&gt;
 using namespace std;
 
 // PEMBAHASAN 2: Pengurangan stok otomatis
@@ -79,8 +413,7 @@ int main() {
     beliBarang(1, 20, stok); // stok tidak cukup
 
     return 0;
-}
-            </pre>
+}</pre>
         </section>
 
         <hr>
@@ -93,8 +426,7 @@ int main() {
                     <button class="action-btn download-btn" data-target="code3" data-filename="tugas3_restock.txt">Download TXT</button>
                 </div>
             </div>
-            <pre class="code-area" id="code3">
-#include &lt;iostream&gt;
+            <pre class="code-area" id="code3">#include &lt;iostream&gt;
 using namespace std;
 
 // PEMBAHASAN 3: Fitur restock barang
@@ -109,8 +441,7 @@ int main() {
     restock(0, 5, stok); // tambah stok item 1 sebanyak 5
 
     return 0;
-}
-            </pre>
+}</pre>
         </section>
 
         <hr>
@@ -123,8 +454,7 @@ int main() {
                     <button class="action-btn download-btn" data-target="code4" data-filename="tugas4_ifelse.txt">Download TXT</button>
                 </div>
             </div>
-            <pre class="code-area" id="code4">
-#include &lt;iostream&gt;
+            <pre class="code-area" id="code4">#include &lt;iostream&gt;
 using namespace std;
 
 // PEMBAHASAN 4: Menu pilihan menggunakan if/else
@@ -148,8 +478,7 @@ int main() {
     else if (pilihan == 4) cout &lt;&lt; "Keluar program" &lt;&lt; endl;
 
     return 0;
-}
-            </pre>
+}</pre>
         </section>
 
         <hr>
@@ -162,8 +491,7 @@ int main() {
                     <button class="action-btn download-btn" data-target="code5" data-filename="tugas5_switch.txt">Download TXT</button>
                 </div>
             </div>
-            <pre class="code-area" id="code5">
-#include &lt;iostream&gt;
+            <pre class="code-area" id="code5">#include &lt;iostream&gt;
 using namespace std;
 
 // PEMBAHASAN 4: Menu pilihan menggunakan switch
@@ -191,8 +519,7 @@ int main() {
     }
 
     return 0;
-}
-            </pre>
+}</pre>
         </section>
 
         <hr>
@@ -205,8 +532,7 @@ int main() {
                     <button class="action-btn download-btn" data-target="code6" data-filename="tugas6_dowhile.txt">Download TXT</button>
                 </div>
             </div>
-            <pre class="code-area" id="code6">
-#include &lt;iostream&gt;
+            <pre class="code-area" id="code6">#include &lt;iostream&gt;
 using namespace std;
 
 // PEMBAHASAN 5: Looping program dengan do-while
@@ -230,8 +556,7 @@ int main() {
     cout &lt;&lt; "Program selesai." &lt;&lt; endl;
 
     return 0;
-}
-            </pre>
+}</pre>
         </section>
         
     </main>
@@ -241,7 +566,63 @@ int main() {
     </footer>
 
     <script>
-        // Animasi untuk kartu saat dimuat
+        // Utility functions
+        function cleanCode(code) {
+            return code.trim();
+        }
+
+        function showNotification(message, type = 'info', duration = 3000) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            // Style the notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 12px 16px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                transform: translateX(120%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            // Set background color based on type
+            const colors = {
+                info: 'linear-gradient(135deg, #00d9f5, #3b3060)',
+                success: 'linear-gradient(135deg, #4CAF50, #2E7D32)',
+                error: 'linear-gradient(135deg, #f44336, #C62828)',
+                warning: 'linear-gradient(135deg, #FF9800, #EF6C00)'
+            };
+            
+            notification.style.background = colors[type] || colors.info;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Remove after duration
+            setTimeout(() => {
+                notification.style.transform = 'translateX(120%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, duration);
+        }
+
+        // Initialize card animations
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.animated-card');
             cards.forEach((card, index) => {
@@ -249,13 +630,6 @@ int main() {
                 card.classList.add('animate-in');
             });
         });
-
-        // --- Fungsionalitas Copy dan Download (JavaScript) ---
-
-        // Fungsi untuk membersihkan kode (hapus spasi/baris kosong di awal/akhir)
-        function cleanCode(code) {
-            return code.trim();
-        }
 
         // Fungsionalitas Copy
         document.querySelectorAll('.copy-btn').forEach(button => {
@@ -274,9 +648,12 @@ int main() {
                         this.classList.remove('copied');
                         this.textContent = 'Copy';
                     }, 2000);
+                    
+                    // Show notification
+                    showNotification('Kode berhasil disalin!', 'success');
                 }).catch(err => {
                     console.error('Could not copy text: ', err);
-                    alert('Gagal menyalin teks.');
+                    showNotification('Gagal menyalin teks.', 'error');
                 });
             });
         });
@@ -307,6 +684,9 @@ int main() {
                     URL.revokeObjectURL(url); // Bersihkan URL objek
                     
                     this.classList.remove('downloading');
+                    
+                    // Show notification
+                    showNotification('File berhasil diunduh!', 'success');
                 }, 500);
             });
         });

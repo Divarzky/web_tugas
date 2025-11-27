@@ -4,7 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Tugas Dipzkyy</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==================================== */
+        /* TEMA HITAM DAN BIRU (DARK MODE) */
+        /* ==================================== */
+        :root {
+            /* Warna Utama */
+            --primary-blue: #007bff;
+            --secondary-blue: #1e90ff;
+            
+            /* Warna Latar Belakang */
+            --background-dark: #121212;
+            --surface-dark: #1e1e1e;
+            --surface-hover: #2a2a2a;
+            
+            /* Warna Teks */
+            --text-light: #ffffff;
+            --text-secondary: #b3b3b3;
+            
+            /* Warna Feedback */
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+
+            --border-radius: 12px;
+            --shadow-dark: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Base Styles & Solusi Blank Hitam */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: background-color 0.5s ease;
+            /* Tambahkan fade-in pada body saat loading */
+            opacity: 0;
+            animation: bodyFadeIn 0.5s ease-out forwards;
+        }
+
+        /* HEADER */
+        .header {
+            background-color: var(--surface-dark);
+            color: var(--text-light);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-blue);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: var(--secondary-blue);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 5%;
+        }
+
+        /* CARD */
+        .card {
+            background-color: var(--surface-dark);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-dark);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Typography */
+        h3 {
+            color: var(--primary-blue);
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: var(--text-secondary);
+        }
+
+        /* ==================================== */
+        /* RUNNING TEXT */
+        /* ==================================== */
+        .running-text-container {
+            overflow: hidden;
+            background-color: var(--secondary-blue);
+            color: var(--text-light);
+            padding: 10px 0;
+            white-space: nowrap;
+            margin-bottom: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .running-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+        }
+
+        .running-text span {
+            padding-right: 60px;
+            font-weight: 600;
+        }
+
+        @keyframes marquee {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* ==================================== */
+        /* BUTTONS */
+        /* ==================================== */
+        .btn-secondary,
+        .primary-btn,
+        .secondary-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: #495057;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #6c757d;
+            transform: translateY(-2px);
+        }
+
+        .primary-btn {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background-color: #3e444a;
+            color: var(--text-light);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .secondary-btn:hover {
+            background-color: #555c63;
+            transform: translateY(-2px);
+        }
+        
+        /* Menu Card */
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-btn {
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.1em;
+        }
+
+        .menu-btn .icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            line-height: 1;
+        }
+
+        /* Motivation Card */
+        .motivation-card {
+            border-left: 5px solid var(--success-color);
+            background-color: #1e281e;
+        }
+
+        .motivation-card h3 {
+            color: var(--success-color);
+        }
+        
+        /* Welcome Card */
+        .welcome-card {
+            border-left: 5px solid var(--secondary-blue);
+        }
+
+        /* Feedback Form */
+        .feedback-card {
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: var(--text-light);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            background-color: #2a2a2a;
+            color: var(--text-light);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            display: none;
+            font-weight: bold;
+        }
+
+        .form-message.success {
+            background-color: #1a472a;
+            color: #d4edda;
+        }
+
+        .form-message.error {
+            background-color: #58151c;
+            color: #f8d7da;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--surface-dark);
+            color: var(--text-secondary);
+            padding: 15px 5%;
+            margin-top: 30px;
+            border-top: 2px solid #333;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        /* ==================================== */
+        /* ANIMASI MASUK (FADE-IN EFFECT) */
+        /* ==================================== */
+        @keyframes bodyFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(10px); }
+        }
+
+        .animated-card, .running-text-container {
+            opacity: 0;
+            transform: translateY(30px);
+            animation-fill-mode: forwards;
+        }
+
+        .animated-card.animate-in {
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -13,11 +306,16 @@
     </header>
 
     <main class="container">
-        <!-- Running Text Section -->
-        <section class="running-text-container">
+        <section class="running-text-container animated-card">
             <div class="running-text">
                 <span>Selamat Datang di Portal Tugas Pemrograman Dasar C++ - Kode tersedia dan dapat diunduh - Jangan lupa beri kritik dan saran - </span>
+                <span>Selamat Datang di Portal Tugas Pemrograman Dasar C++ - Kode tersedia dan dapat diunduh - Jangan lupa beri kritik dan saran - </span>
             </div>
+        </section>
+
+        <section class="motivation-card animated-card">
+            <h3>💡 Jangan Takut Error Saat Ngoding!</h3>
+            <p>Setiap programmer pernah mengalami error. Justru dari error-lah kita belajar dan berkembang. Jangan menyerah ketika menemui bug, karena setiap masalah memiliki solusinya. Teruslah mencoba dan belajar dari kesalahan!</p>
         </section>
 
         <section class="card welcome-card animated-card">
@@ -45,7 +343,6 @@
             </div>
         </section>
 
-        <!-- Form Kritik & Saran -->
         <section class="card feedback-card animated-card">
             <h3>Kritik & Saran</h3>
             <p>Berikan masukan untuk pengembangan aplikasi ini</p>
@@ -83,59 +380,59 @@
         const username = localStorage.getItem('username');
         const greetingElement = document.getElementById('greeting');
         const logoutBtn = document.getElementById('logoutBtn');
-
-        // Cek nama pengguna. Jika tidak ada, arahkan kembali ke login.
-        if (username) {
-            greetingElement.textContent = `Halo, ${username}! 👋`;
-        } else {
-            // Pengamanan: Jika langsung ke home tanpa login, kembalikan ke login
-            window.location.href = 'login.html';
-        }
-
-        // Fungsionalitas Logout
-        logoutBtn.addEventListener('click', function() {
-            // Animasi keluar
-            document.body.style.animation = 'fadeOut 0.5s ease forwards';
-            
-            setTimeout(() => {
-                localStorage.removeItem('username'); // Hapus nama pengguna
-                window.location.href = 'login.html'; // Kembali ke halaman login
-            }, 500);
-        });
-
-        // Animasi untuk kartu saat dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.animated-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-                card.classList.add('animate-in');
-            });
-        });
-
-        // Form Kritik & Saran
         const feedbackForm = document.getElementById('feedbackForm');
         const formMessage = document.getElementById('formMessage');
         const submitBtn = document.getElementById('submitBtn');
         const btnText = submitBtn.querySelector('.btn-text');
         const btnLoader = submitBtn.querySelector('.btn-loader');
 
+        // PENTING: Pengecekan username dipindahkan setelah DOMContentLoaded
+        // untuk memastikan elemen body dan greeting sudah ter-load sebelum mencoba memanipulasinya.
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek nama pengguna. Jika tidak ada, fallback ke "Pengguna"
+            if (username) {
+                greetingElement.textContent = `Halo, ${username}! 👋`;
+            } else {
+                greetingElement.textContent = `Halo, Pengguna! 👋`;
+            }
+
+            // Animasi untuk kartu saat dimuat (Staggered Fade-In)
+            const animatedElements = document.querySelectorAll('.animated-card');
+            
+            animatedElements.forEach((el, index) => {
+                // Memberi delay bertahap
+                el.style.animationDelay = `${index * 0.15}s`;
+                el.classList.add('animate-in');
+            });
+        });
+
+        // Fungsionalitas Logout
+        logoutBtn.addEventListener('click', function() {
+            document.body.style.animation = 'fadeOut 0.5s ease forwards';
+            
+            setTimeout(() => {
+                localStorage.removeItem('username');
+                alert('Anda telah keluar.');
+                // Jika halaman login tersedia:
+                // window.location.href = 'login.html'; 
+                document.body.style.animation = 'none'; 
+            }, 500);
+        });
+
         // Validasi form
         function validateForm() {
             let isValid = true;
-            
-            // Reset error messages
             document.querySelectorAll('.error-message').forEach(el => {
                 el.textContent = '';
             });
             
-            // Validate name
             const name = document.getElementById('name').value.trim();
             if (!name) {
                 document.getElementById('nameError').textContent = 'Nama harus diisi';
                 isValid = false;
             }
             
-            // Validate email
             const email = document.getElementById('email').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email) {
@@ -146,7 +443,6 @@
                 isValid = false;
             }
             
-            // Validate message
             const message = document.getElementById('message').value.trim();
             if (!message) {
                 document.getElementById('messageError').textContent = 'Pesan harus diisi';
@@ -156,6 +452,7 @@
             return isValid;
         }
 
+        // Penanganan Submit Form Kritik & Saran
         feedbackForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -168,7 +465,6 @@
             btnLoader.style.display = 'block';
             submitBtn.disabled = true;
             
-            // Kirim form menggunakan Fetch API
             const formData = new FormData(feedbackForm);
             
             fetch(feedbackForm.action, {
@@ -183,11 +479,11 @@
                     showFormMessage('Pesan berhasil dikirim! Terima kasih atas masukan Anda.', 'success');
                     feedbackForm.reset();
                 } else {
-                    showFormMessage('Terjadi kesalahan. Silakan coba lagi.', 'error');
+                    showFormMessage('Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.', 'error');
                 }
             })
             .catch(error => {
-                showFormMessage('Terjadi kesalahan. Silakan coba lagi.', 'error');
+                showFormMessage('Terjadi kesalahan jaringan. Silakan coba lagi.', 'error');
                 console.error('Error:', error);
             })
             .finally(() => {
@@ -203,7 +499,6 @@
             formMessage.className = 'form-message ' + type;
             formMessage.style.display = 'block';
 
-            // Sembunyikan pesan setelah 5 detik
             setTimeout(() => {
                 formMessage.style.display = 'none';
             }, 5000);
