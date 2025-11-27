@@ -3,45 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memuat...</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Memuat Aplikasi...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .loading-container {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #1a1a2e;
-            color: white;
-            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
         }
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid #00d9f5;
+        
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
+            background: rgba(0, 217, 245, 0.1);
+            animation: floatShape 20s infinite linear;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+            animation-duration: 25s;
+            background: rgba(255, 46, 99, 0.15);
+        }
+        
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 10s;
+            animation-duration: 30s;
+            background: rgba(59, 48, 96, 0.2);
+        }
+        
+        .ribbon-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .ribbon {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            background: linear-gradient(45deg, #00d9f5, #ff2e63);
+            opacity: 0.7;
+            transform: rotate(45deg);
+            animation: floatRibbon 15s infinite linear;
+        }
+        
+        .ribbon-1 {
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+            background: linear-gradient(45deg, #00d9f5, #3b3060);
+        }
+        
+        .ribbon-2 {
+            top: 40%;
+            right: -100px;
+            animation-delay: 5s;
+            background: linear-gradient(45deg, #ff2e63, #00d9f5);
+            animation-duration: 20s;
+        }
+        
+        .ribbon-3 {
+            bottom: 20%;
+            left: -100px;
+            animation-delay: 10s;
+            background: linear-gradient(45deg, #3b3060, #ff2e63);
+            animation-duration: 25s;
+        }
+        
+        .loading-container {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .logo-3d {
+            perspective: 1000px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .cube {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 8s infinite linear;
+        }
+        
+        .face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 217, 245, 0.1);
+            border: 2px solid #00d9f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00d9f5;
+            backface-visibility: visible;
+        }
+        
+        .front { transform: translateZ(50px); }
+        .back { transform: translateZ(-50px) rotateY(180deg); }
+        .right { transform: translateX(50px) rotateY(90deg); }
+        .left { transform: translateX(-50px) rotateY(-90deg); }
+        .top { transform: translateY(-50px) rotateX(90deg); }
+        .bottom { transform: translateY(50px) rotateX(-90deg); }
+        
+        .welcome-text {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #00d9f5, #ff2e63);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 2s infinite alternate;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .loading-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 217, 245, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00d9f5, #ff2e63);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 1.5s infinite;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        @keyframes floatShape {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes floatRibbon {
+            0% {
+                transform: translateX(-100px) rotate(45deg);
+            }
+            100% {
+                transform: translateX(calc(100vw + 200px)) rotate(45deg);
+            }
+        }
+        
+        @keyframes rotateCube {
+            0% { transform: rotateX(0) rotateY(0); }
+            25% { transform: rotateX(90deg) rotateY(90deg); }
+            50% { transform: rotateX(180deg) rotateY(180deg); }
+            75% { transform: rotateX(270deg) rotateY(270deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(0, 217, 245, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(0, 217, 245, 0.8), 0 0 30px rgba(255, 46, 99, 0.6);
+            }
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        @keyframes pageExit {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 2rem;
+            }
+            
+            .loading-subtitle {
+                font-size: 1rem;
+            }
+            
+            .cube {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .face {
+                width: 80px;
+                height: 80px;
+                font-size: 1rem;
+            }
+            
+            .front { transform: translateZ(40px); }
+            .back { transform: translateZ(-40px) rotateY(180deg); }
+            .right { transform: translateX(40px) rotateY(90deg); }
+            .left { transform: translateX(-40px) rotateY(-90deg); }
+            .top { transform: translateY(-40px) rotateX(90deg); }
+            .bottom { transform: translateY(40px) rotateX(-90deg); }
+        }
+        
+        @media (max-width: 480px) {
+            .welcome-text {
+                font-size: 1.7rem;
+            }
+            
+            .loading-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .loading-container {
+                padding: 15px;
+            }
+            
+            .shape-1, .shape-2, .shape-3 {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="ribbon-animation">
+        <div class="ribbon ribbon-1"></div>
+        <div class="ribbon ribbon-2"></div>
+        <div class="ribbon ribbon-3"></div>
+    </div>
+    
     <div class="loading-container">
-        <div class="spinner"></div>
-        <h1>Memuat Aplikasi...</h1>
+        <div class="logo-3d">
+            <div class="cube">
+                <div class="face front">C++</div>
+                <div class="face back">Code</div>
+                <div class="face right">Task</div>
+                <div class="face left">Web</div>
+                <div class="face top">DZ</div>
+                <div class="face bottom">2024</div>
+            </div>
+        </div>
+        
+        <h1 class="welcome-text">Welcome Guys!</h1>
+        <p class="loading-subtitle">Memuat aplikasi tugas pemrograman C++</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+                <div class="progress-text">0%</div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Arahkan ke halaman login setelah 2 detik
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 2000);
+        // Animasi progress bar
+        const progressFill = document.querySelector('.progress-fill');
+        const progressText = document.querySelector('.progress-text');
+        let progress = 0;
+        
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+            
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `${Math.floor(progress)}%`;
+            
+            if (progress === 100) {
+                clearInterval(progressInterval);
+                // Tambah animasi keluar sebelum redirect
+                document.body.style.animation = 'pageExit 0.8s ease forwards';
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 800);
+            }
+        }, 200);
     </script>
 </body>
 </html>

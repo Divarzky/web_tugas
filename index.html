@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        window.location.href = 'loading.html';
+        setTimeout(() => {
+            window.location.href = 'loading.html';
+        }, 100);
     </script>
 </head>
-<body>
-    <p>Redirecting...</p>
+<body style="background: #1a1a2e; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: Arial, sans-serif;">
+    <p>Redirecting to Loading Page...</p>
 </body>
 </html>
