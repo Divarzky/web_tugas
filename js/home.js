@@ -3,20 +3,16 @@
 // Form validation
 function validateForm() {
     let isValid = true;
-    
-    // Reset error messages
     document.querySelectorAll('.error-message').forEach(el => {
         el.textContent = '';
     });
     
-    // Validate name
     const name = document.getElementById('name').value.trim();
     if (!name) {
         document.getElementById('nameError').textContent = 'Nama harus diisi';
         isValid = false;
     }
     
-    // Validate email
     const email = document.getElementById('email').value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
@@ -27,7 +23,6 @@ function validateForm() {
         isValid = false;
     }
     
-    // Validate message
     const message = document.getElementById('message').value.trim();
     if (!message) {
         document.getElementById('messageError').textContent = 'Pesan harus diisi';
@@ -59,7 +54,6 @@ function setupFeedbackForm() {
             if (btnLoader) btnLoader.style.display = 'block';
             submitBtn.disabled = true;
             
-            // Send form using Fetch API
             const formData = new FormData(feedbackForm);
             
             fetch(feedbackForm.action, {
@@ -95,8 +89,7 @@ function setupFeedbackForm() {
             formMessage.textContent = message;
             formMessage.className = 'form-message ' + type;
             formMessage.style.display = 'block';
-            
-            // Hide message after 5 seconds
+
             setTimeout(() => {
                 formMessage.style.display = 'none';
             }, 5000);

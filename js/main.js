@@ -59,26 +59,14 @@ function showNotification(message, type = 'info', duration = 3000) {
 
 // Initialize card animations
 function initCardAnimations() {
-    document.addEventListener('DOMContentLoaded', function() {
-        const cards = document.querySelectorAll('.animated-card');
-        cards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.15}s`;
-            card.classList.add('animate-in');
-        });
+    const cards = document.querySelectorAll('.animated-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+        card.classList.add('animate-in');
     });
 }
 
 // Add fade-out animation to body
 function addFadeOutAnimation(duration = 500) {
     document.body.style.animation = `fadeOut ${duration}ms ease forwards`;
-}
-
-// Export functions for use in other files
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        cleanCode,
-        showNotification,
-        initCardAnimations,
-        addFadeOutAnimation
-    };
 }

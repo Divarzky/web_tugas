@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Tugas Dipzkyy</title>
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="login-container">
@@ -21,27 +21,6 @@
         </div>
     </div>
 
-    <script>
-        const loginForm = document.getElementById('loginForm');
-        const usernameInput = document.getElementById('username');
-
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = usernameInput.value.trim();
-
-            if (username) {
-                // Simpan nama pengguna di LocalStorage
-                localStorage.setItem('username', username);
-                
-                // Animasi sebelum redirect
-                const loginCard = document.querySelector('.login-card');
-                loginCard.style.animation = 'cardExit 0.5s ease forwards';
-                
-                setTimeout(() => {
-                    window.location.href = 'home.html';
-                }, 500);
-            }
-        });
-    </script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

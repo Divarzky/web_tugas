@@ -20,14 +20,10 @@ function setupCopyButtons() {
                 }, 2000);
                 
                 // Show notification
-                if (typeof showNotification !== 'undefined') {
-                    showNotification('Kode berhasil disalin!', 'success');
-                }
+                showNotification('Kode berhasil disalin!', 'success');
             }).catch(err => {
                 console.error('Could not copy text: ', err);
-                if (typeof showNotification !== 'undefined') {
-                    showNotification('Gagal menyalin teks.', 'error');
-                }
+                showNotification('Gagal menyalin teks.', 'error');
             });
         });
     });
@@ -62,9 +58,7 @@ function setupDownloadButtons() {
                 this.classList.remove('downloading');
                 
                 // Show notification
-                if (typeof showNotification !== 'undefined') {
-                    showNotification('File berhasil diunduh!', 'success');
-                }
+                showNotification('File berhasil diunduh!', 'success');
             }, 500);
         });
     });

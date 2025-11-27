@@ -44,25 +44,6 @@
     .login-card {
         padding: 35px;
     }
-    
-    .spinner-3d {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 25px;
-    }
-    
-    .spinner-face {
-        width: 70px;
-        height: 70px;
-        font-size: 20px;
-    }
-    
-    .spinner-face:nth-child(1) { transform: translateZ(35px); }
-    .spinner-face:nth-child(2) { transform: rotateY(180deg) translateZ(35px); }
-    .spinner-face:nth-child(3) { transform: rotateY(90deg) translateZ(35px); }
-    .spinner-face:nth-child(4) { transform: rotateY(-90deg) translateZ(35px); }
-    .spinner-face:nth-child(5) { transform: rotateX(90deg) translateZ(35px); }
-    .spinner-face:nth-child(6) { transform: rotateX(-90deg) translateZ(35px); }
 }
 
 /* Desktop */
@@ -114,25 +95,6 @@
     .login-card {
         padding: 40px;
     }
-    
-    .spinner-3d {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 30px;
-    }
-    
-    .spinner-face {
-        width: 80px;
-        height: 80px;
-        font-size: 24px;
-    }
-    
-    .spinner-face:nth-child(1) { transform: translateZ(40px); }
-    .spinner-face:nth-child(2) { transform: rotateY(180deg) translateZ(40px); }
-    .spinner-face:nth-child(3) { transform: rotateY(90deg) translateZ(40px); }
-    .spinner-face:nth-child(4) { transform: rotateY(-90deg) translateZ(40px); }
-    .spinner-face:nth-child(5) { transform: rotateX(90deg) translateZ(40px); }
-    .spinner-face:nth-child(6) { transform: rotateX(-90deg) translateZ(40px); }
 }
 
 /* Mobile-specific adjustments */
